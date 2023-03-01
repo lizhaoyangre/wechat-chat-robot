@@ -1,0 +1,54 @@
+<view style="height:10vh;">
+    <scroll-view style="height:94vh;" scroll-y="true" scroll-into-view="{{scrollInto}}">
+        <block wx:for="{{msgList}}" wx:for-item="x" wx:for-index="i" wx:key="i">
+            <view class="msg-item">
+                <block wx:if="{{x.my}}">
+                    <view class="userinfo" id="{{'id'+i}}">
+                        <view class="flex justify-end">
+                            <text class="usermsg" style="word-break:break-all;">{{x.msg}}</text>
+                            <view class="chat-img ">
+                            <image style="height:75rpx;width:75rpx;" src="../../static/user.png" mode="aspectFit"></image>
+                        </view>
+                        </view>
+                    </view>
+                </block>
+                <block wx:if="{{!x.my}}">
+                    <view class="aiinfo" id="{{'id'+i}}">
+                    <block wx:if="{{x.type=='图像'}}">
+                        <view class="chat-img " >
+                            <image style="height:75rpx;width:75rpx;" src="../../static/chatRobot.png" mode="aspectFit"></image>
+                        </view>
+                        <view class="flex" style="width:500rpx;">
+                            <image style="width:100%" src="{{x.msg}}" mode="aspectFit"></image>
+                        </view>
+                        
+                    </block>
+                    <block wx:else>
+                        <view class="chat-img " >
+                            <image style="height:75rpx;width:75rpx;" src="../../static/chatRobot.png" mode="aspectFit"></image>
+                        </view>
+                        <view class="flex" style="width:500rpx;">
+                            <view class="aimsg" style="border-radius:35rpx;background-color:#f9f9f9;"><text style="word-break:break-all;">{{x.msg}}</text>
+                            </view>
+                        </view>
+                    </block>
+                        
+                    </view>
+                </block>
+            </view>
+        </block>
+        <view style="height:130rpx;"></view>
+    </scroll-view>
+    <van-popup show="{{ show }}" bind:close="onClose" round
+  position="bottom">
+    <van-picker columns="{{ columns }}" bind:change="onChange" />
+    </van-popup>
+    
+    <view class="flex-column-center">
+        <block>
+            <view class="inpubut">
+            <view style="width: 160rpx;font-size: 16px;" bindtap="showPopup">{{type}}</view>
+            <input class="dh-input" type="text" value="{{msg}}" confirm-type="search" bindinput="inputChange" placeholder-class="my-neirong-sm" placeholder="描述您的问题" /><button class="btn " disabled="{{msgLoad}}" bindtap="sendMsg">{{sentext}}</button></view>
+        </block>
+    </view>
+</view>

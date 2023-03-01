@@ -1,0 +1,13 @@
+{
+    "pages": [
+        "pages/index/index"
+    ],
+    "subPackages": [],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "chat",
+        "navigationBarBackgroundColor": "#6495ed",
+        "backgroundColor": "#F8F8F8"
+    },
+    "usingComponents": {}
+}
